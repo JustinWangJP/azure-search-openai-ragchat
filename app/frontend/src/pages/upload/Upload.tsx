@@ -131,9 +131,11 @@ export function Component(): JSX.Element {
 
     const handleDownload = async () => {
         try {
-            const response = await fetch("/content/AzureOpenAIとAPIManagementで実現するエンタープライズアーキテクチャ.pdf", {
-                method: "POST"
-            }).then((response: Response) => response.blob());
+            console.log("Client Load File Start.");
+            // const response = await fetch("/content/100MB (1).pdf", {
+            //     method: "POST"
+            // }).then((response: Response) => response.blob());
+
             // const response = await axios.post(
             //     "http://localhost:8080/api/download/content",
             //     { documentNames: names },
@@ -142,8 +144,53 @@ export function Component(): JSX.Element {
             //     }
             // );
             // ファイルダウンロード処理
-            const blob = new Blob([response], { type: "application/pdf" });
-            saveAs(blob, "downloaded_documents.pdf");
+            // console.log("Client Load File End.");
+            // const blob = new Blob([response], { type: "application/pdf" });
+            // console.log("File Download Start.");
+            // saveAs(blob, "downloaded_documents.pdf");
+            // console.log("File Download End.");
+
+            fetch("/content/100MB (1).pdf")
+                // fetch("/content/AzureOpenAIとAPIManagementで実現するエンタープライズアーキテクチャ.pdf")
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.body?.getReader();
+                })
+                .then(reader => {
+                    return new ReadableStream({
+                        start(controller) {
+                            function push() {
+                                reader
+                                    ?.read()
+                                    .then(({ done, value }) => {
+                                        if (done) {
+                                            controller.close();
+                                            return;
+                                        }
+                                        if (value) {
+                                            controller.enqueue(value);
+                                        }
+                                        push();
+                                    })
+                                    .catch(error => {
+                                        console.error("Error reading stream:", error);
+                                        controller.error(error); // ReadableStreamにエラーを通知
+                                        reader.cancel(); // リーダーをキャンセル
+                                    });
+                            }
+                            push();
+                        }
+                    });
+                })
+                .then(stream => new Response(stream))
+                .then(response => response.blob())
+                .then(blob => saveAs(blob, "downloaded_file.pdf"))
+                .catch(error => {
+                    console.error("Error during download:", error);
+                    alert("ファイルのダウンロード中にエラーが発生しました。");
+                });
         } catch (error) {
             console.error("Download Error:", error);
             // setErrorMessage("サーバーエラーが発生しました。");
