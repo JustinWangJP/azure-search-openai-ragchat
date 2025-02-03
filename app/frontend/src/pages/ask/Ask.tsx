@@ -242,9 +242,9 @@ export function Component(): JSX.Element {
     return (
         <div className={styles.askContainer}>
             {/* Setting the page title using react-helmet-async */}
-            <Helmet>
+            {/* <Helmet>
                 <title>{t("pageTitle")}</title>
-            </Helmet>
+            </Helmet> */}
             <div className={styles.askTopSection}>
                 <div className={styles.commandsContainer}>
                     {showUserUpload && <UploadFile className={styles.commandButton} disabled={loggedIn} />}

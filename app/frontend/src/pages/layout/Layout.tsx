@@ -61,6 +61,24 @@ const Layout = () => {
                                     {t("qa")}
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/fileUpload"
+                                    className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {t("fileUpload")}
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/upload"
+                                    className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {t("fileUpload")} 2
+                                </NavLink>
+                            </li>
                         </ul>
                     </nav>
                     <div className={styles.loginMenuContainer}>

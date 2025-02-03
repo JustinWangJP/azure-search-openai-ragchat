@@ -1,5 +1,10 @@
 export function Component(): JSX.Element {
-    return <h1>404</h1>;
+    return (
+        <div>
+            <h1>Oops!</h1>
+            <p>404 Page.</p>
+        </div>
+    );
 }
 
 Component.displayName = "NoPage";

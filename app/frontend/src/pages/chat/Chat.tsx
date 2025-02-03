@@ -351,9 +351,9 @@ const Chat = () => {
     return (
         <div className={styles.container}>
             {/* Setting the page title using react-helmet-async */}
-            <Helmet>
-                <title>{t("pageTitle")}</title>
-            </Helmet>
+            {/* <Helmet> */}
+            <title>{t("pageTitle")}</title>
+            {/* </Helmet> */}
             <div className={styles.commandsSplitContainer}>
                 <div className={styles.commandsContainer}>
                     {((useLogin && showChatHistoryCosmos) || showChatHistoryBrowser) && (

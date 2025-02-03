@@ -3,6 +3,7 @@
     "headerTitle": "Azure OpenAI + AI Search",
     "chat": "チャット",
     "qa": "一問一答",
+    "fileUpload": "アップロード",
     "login": "ログイン",
     "logout": "ログアウト",
     "clearChat": "チャットをクリア",

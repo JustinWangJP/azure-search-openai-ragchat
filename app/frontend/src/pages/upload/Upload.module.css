@@ -1,0 +1,61 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dropZone {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: border-color 0.3s ease;
+}
+
+.dropZone:hover {
+    border-color: #0078d4;
+}
+
+.dropZoneActive {
+    border-color: #0078d4;
+    background-color: #f0f8ff;
+}
+
+.fileList {
+    margin-top: 20px;
+}
+
+.fileItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.fileName {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.errorMessage {
+    color: #a4262c;
+    margin-top: 10px;
+}
+
+.successMessage {
+    color: #107c10;
+    margin-top: 10px;
+}
+
+.uploadButton {
+    margin-top: 20px;
+}
+
+.progressBar {
+    margin-top: 20px;
+}
